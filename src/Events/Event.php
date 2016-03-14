@@ -55,13 +55,21 @@ abstract class Event extends PhpObj {
     }
 
     protected function readUser(array $opts, $key) {
-        return [
-            'name' => $opts[$key.'_name'],
-            'account' => [
-                'homePage' => $opts[$key.'_url'],
-                'name' => $opts[$key.'_id'],
-            ],
-        ];
+		if (isset($opts[$key.'_email']) && $opts[$key.'_email']) {	// priority to mbox, then account
+			return [
+				'name' => $opts[$key.'_name'],
+				'mbox' => $opts[$key.'_email'],
+			];
+		}
+		else {
+			return [
+				'name' => $opts[$key.'_name'],
+				'account' => [
+					'homePage' => $opts[$key.'_url'],
+					'name' => $opts[$key.'_id'],
+				],
+			];
+		}
     }
 
     protected function readActivity(array $opts, $key) {
