@@ -60,8 +60,7 @@ abstract class Event extends PhpObj {
 				'name' => $opts[$key.'_name'],
 				'mbox' => $opts[$key.'_email'],
 			];
-		}
-		else {
+		} else {
 			return [
 				'name' => $opts[$key.'_name'],
 				'account' => [
