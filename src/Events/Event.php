@@ -55,7 +55,7 @@ abstract class Event extends PhpObj {
     }
 
     protected function readUser(array $opts, $key) {
-		if (isset($opts[$key.'_email']) && $opts[$key.'_email']) {	// priority to mbox, then account
+		if (isset($opts['sendmbox']) && $opts['sendmbox'] == true) {
 			return [
 				'name' => $opts[$key.'_name'],
 				'mbox' => $opts[$key.'_email'],
